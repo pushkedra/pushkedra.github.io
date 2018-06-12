@@ -2,14 +2,15 @@
 layout: default
 ---
 
-{% for i in (1..70) %}
+{% for i in (0..70) %}
 
     <div>
-    {% for j in (1..10) %}
+        {% assign temp = i %}
+        {% for j in (1..10) %}
 
-        <span class="{{ i }}">    {{ j }}    </span>
+            <span class="{{ i }}">    {{ i | times: 10 | plus: j }}    </span>
 
-    {% endfor %}
-    </div>
+        {% endfor %}
+        </div>
 
 {% endfor %}
