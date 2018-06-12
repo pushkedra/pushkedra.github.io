@@ -1,0 +1,17 @@
+
+name: test
+description: test
+author:
+  name: 
+  email: 
+url: 
+encoding: UTF-8
+permalink: pretty
+
+# Build settings
+sass:
+  style: compressed
+
+# Markdown library.
+markdown: kramdown
+
