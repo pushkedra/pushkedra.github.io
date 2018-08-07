@@ -5,4 +5,5 @@ _site
 .idea
 node_modules
 bundle.js
+.DS_Store
 README.md
