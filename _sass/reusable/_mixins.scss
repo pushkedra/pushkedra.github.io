@@ -1,0 +1,370 @@
+@mixin desktop {
+  @media (min-width: #{$tablet_width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet_width}) and (max-width: #{$desktop_width}) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait {
+  @media (min-width: #{$iphoneX}) and (max-width: #{$tablet_width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (min-width: #{$iphone4}) and (max-width: #{$tablet_width}) {
+    @content;
+  }
+}
+
+@mixin mobile-only {
+  @media (max-width: #{$mobile_landscape}) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media (min-width: #{$desktop_width}) {
+    @content;
+  }
+}
+
+@mixin hr($color, $margin) {
+  margin: $margin;
+  display: block;
+  $height: 1px;
+  border: 0;
+  border-top: $height solid $color;
+  padding: 0;
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin badge() {
+  @include size(11px, 11px);
+  border: 1px solid $golden;
+  padding: 0;
+  background-color: transparent;
+  &:hover, &.w3-golden {
+    background-color: $golden;
+  }
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin button($color, $gradient1, $gradient2) {
+  border: 1px solid $color;
+  background: linear-gradient(180deg, $gradient1 0%, $gradient2 100%);
+  border-radius: 5px;
+}
+@mixin content-columns($columnCount, $columnGap) {
+  -webkit-column-count: $columnCount;
+  -moz-column-count: $columnCount;
+  column-count: $columnCount;
+  -webkit-column-gap: $columnGap;
+  -moz-column-gap: $columnGap;
+  column-gap: $columnGap;
+}
+
+@mixin x-appearance($value) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
+}
+
+@mixin box-shadow($args...) {
+  box-shadow: $args;
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+}
+
+@mixin text-shadow($args...) {
+  text-shadow: $args;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin font($size, $line-height:null, $font-weight:null, $color:null ) {
+  font-family: 'Heebo', sans-serif;
+  font-size: $size;
+  color: $color;
+  line-height: $line-height;
+  font-weight: $font-weight;
+}
+
+
+@mixin font-face($type:'Regular', $font-style:normal, $font-weight:400) {
+  @font-face {
+    font-family: 'Heebo';
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: url('/fonts/Heebo-#{$type}.eot'); /* IE9 Compat Modes */
+    src: local('Heebo'), local('Heebo-Regular'),
+    url('/fonts/Heebo-#{$type}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/fonts/Heebo-#{$type}.woff2') format('woff2'), /* Super Modern Browsers */
+    url('/fonts/Heebo-#{$type}.woff') format('woff'), /* Modern Browsers */
+    url('/fonts/Heebo-#{$type}.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('/fonts/Heebo-#{$type}.svg#Heebo') format('svg'), /* Legacy iOS */
+
+  }
+}
+
+@mixin absolute($args...) {
+  @include position(absolute, $args...);
+}
+
+@mixin relative($args...) {
+  @include position(relative, $args...);
+}
+
+@mixin fixed($args...) {
+  @include position(fixed, $args...);
+}
+
+/////////////
+///FLEXBOX///
+/////////////
+
+// --------------------------------------------------
+// Flexbox SASS mixins
+// The spec: http://www.w3.org/TR/css3-flexbox
+// --------------------------------------------------
+
+// Flexbox display
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// The 'flex' shorthand
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex: $values;
+  -webkit-flex: $values;
+  -ms-flex: $values;
+  flex: $values;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row | row-reverse | column | column-reverse
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+// Flex Direction and Wrap
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+@mixin flex-flow($flow) {
+  -webkit-flex-flow: $flow;
+  -moz-flex-flow: $flow;
+  -ms-flex-flow: $flow;
+  flex-flow: $flow;
+}
+
+// Display Order
+// - applies to: flex items
+// <integer>
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+// Flex grow factor
+// - applies to: flex items
+// <number>
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+  -moz-flex-grow: $grow;
+  -ms-flex-grow: $grow;
+  flex-grow: $grow;
+}
+
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number>
+@mixin flex-shrink($shrink) {
+  -webkit-flex-shrink: $shrink;
+  -moz-flex-shrink: $shrink;
+  -ms-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width>
+@mixin flex-basis($width) {
+  -webkit-flex-basis: $width;
+  -moz-flex-basis: $width;
+  -ms-flex-basis: $width;
+  flex-basis: $width;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch
+@mixin align-self($align) {
+  -webkit-align-self: $align;
+  -moz-align-self: $align;
+  -ms-align-self: $align;
+  align-self: $align;
+}
+
+@mixin infobox() {
+  @include flexbox();
+  @include align-items(center);
+  width: 225px;
+  border-radius: 7px;
+  overflow: hidden !important;
+  background: white;
+  a {
+    &:first-of-type {
+      font-weight: 900;
+    }
+    color: $hint1;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  padding: 5px 10px;
+  max-height: 140px;
+  img {
+    @include size(48px, 48px);
+    margin: 0;
+  }
+  &-meta {
+    direction: rtl;
+    margin-right: 7px !important;
+    @include flex-basis(77%);
+    img {
+      &:first-of-type {
+        @include size(20px, 30px);
+      }
+      &:last-of-type {
+        @include size(16px, 16px);
+      }
+    }
+  }
+  &-bycar {
+    margin: 0 0 7px;
+    text-align: center;
+    img {
+      max-height: 20px;
+    }
+  }
+}
+
+@mixin form-messages() {
+  form {
+    @include transition(all 0.7s ease-in-out);
+    opacity: 1;
+  }
+  &.inactive-error, &.inactive-success {
+    form {
+      opacity: 0;
+    }
+  }
+  &.inactive-error .submit-error, &.inactive-success .submit-success {
+    opacity: 1;
+  }
+  .submit-success, .submit-error {
+    @include transition(opacity 0.7s ease-in-out);
+    display: block;
+    font-size: 1.5em;
+    color: $pink;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,32 @@
+@import "reusable/variables";
+@import "reusable/mixins";
+
+@include font-face(Thin,normal,200);
+@include font-face(Light,normal,300);
+@include font-face();
+@include font-face(Medium,normal,500);
+@include font-face(Bold,normal,700);
+
+.class1 {
+  @include font(14px, 24px, 200);
+}
+.class2 {
+  @include font(14px, 24px, 300);
+}
+.class3 {
+  @include font(14px, 24px, normal);
+}
+.class4 {
+  @include font(14px, 24px, 500);
+}
+.class5 {
+  @include font(14px, 24px, bold);
+}
+.class6 {
+  @include font(14px, 24px, 900);
+}
+
+
+#test2 p {
+  font-size: 45px;
+}
