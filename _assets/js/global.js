@@ -16,22 +16,13 @@ function main() {
 
 document.addEventListener('click', (evt) => {
   let a = document.querySelector('.test-container');
-  if (evt.target === a || a.contains(evt.target)) {
+  if (a.classList.contains('w3-show') && (evt.target === a || a.contains(evt.target))) {
     console.log('yes');
-    alert('yes');
-    if (a.classList.contains('w3-show')) {
-      console.log(evt.target.classList);
-      alert(a.classList);
-    }
+    alert(evt.target.classList);
   }
   else {
     console.log('no');
     alert('no');
   }
 
-});
-
-document.querySelector('.content-wrapper').addEventListener('click', (evt) => {
-  console.log(evt.target);
-  alert(evt.target);
 });
