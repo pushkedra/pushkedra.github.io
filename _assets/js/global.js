@@ -14,9 +14,8 @@ function main() {
 
 }
 
-let a = document.querySelector('.test-container');
-
 document.addEventListener('click', (evt) => {
+  let a = document.querySelector('.test-container');
   if (evt.target === a || a.contains(evt.target)) {
     console.log('yes');
     alert('yes');
@@ -30,4 +29,9 @@ document.addEventListener('click', (evt) => {
     alert('no');
   }
 
+});
+
+document.querySelector('.content-wrapper').addEventListener('click', (evt) => {
+  console.log(evt.target);
+  alert(evt.target);
 });
