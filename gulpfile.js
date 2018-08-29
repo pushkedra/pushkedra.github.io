@@ -21,7 +21,7 @@ let gulp = require('gulp'),
 gulp.task('es6-home_page', function () {
     browserify({ debug: true })
         .transform("babelify", {presets: ['es2015']})
-        .require(['./_assets/js/global.js', `./_assets/js/home-page.js`], { entry: true })
+        .require(['./_assets/js/reusable/polyfills.js', './_assets/js/global.js', `./_assets/js/home-page.js`], { entry: true })
         .bundle()
         .on('error', gutil.log)
         .pipe(source(`home-page.min.js`))
