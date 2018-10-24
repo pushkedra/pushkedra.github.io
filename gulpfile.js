@@ -30,7 +30,7 @@ gulp.task('es6-home_page', function () {
         .pipe(size({
             title: `size of home-page.min.js`
         }))
-        .pipe(gulp.dest('./js'));
+        .pipe(gulp.dest('./js/custom'));
 });
 
 gulp.task('watch', function () {
@@ -42,6 +42,6 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('clean', function () {
-    return gulp.src(['js'], {read: false})
+    return gulp.src(['js/custom'], {read: false})
         .pipe(clean());
 });
