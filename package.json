@@ -1,5 +1,5 @@
 {
-  "name": "shap-medicart",
+  "name": "my",
   "version": "1.0.0",
   "babel": {
     "plugins": [
@@ -35,7 +35,7 @@
     "gulp-util": "^3.0.8",
     "merge-stream": "^1.0.1",
     "uglify-es": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
-    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
+    "cached-path-relative": "^1.0.2",
     "vinyl-source-stream": "^1.1.2"
   },
   "main": "index.js",
