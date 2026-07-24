@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Test klaviyo</title>
-  <meta content="Test klaviyo" name="description" />
+  <title>Home</title>
+  <meta content="Home" name="description" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
 
   <style>
@@ -14,254 +14,33 @@
       margin: 0 auto;
     }
 
-    .page-title {
-      text-align: center;
-    }
-
-    .klaviyo-form {
-      margin: 40px auto;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .cta-form__input-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 14px;
-    }
-
-    .thank_you, .success_message, .fail_message {
-      display: none;
+    .content {
+      padding: 48px 24px;
     }
   </style>
 </head>
 <body>
 
-<div class="page smooth-scroll-wrapper">
-  <section class="cx-bonus is--bg-yellow section">
-    <div class="cx-bonus__container container">
-      <div class="cx-bonus__wrap">
-        <h2 class="page-title h3-40px is-black">Test klaviyo</h2>
-        <div class="cta__form-container">
-          <div class="cta-form__block w-form">
-            <form
-              id="email-form"
-              name="email-form"
-              data-name="Email Form"
-              method="post"
-              class="tool-form klaviyo-form"
-            >
-              <div class="klaviyo_field_group is--contact-form is--vertical">
-                <div class="cta-form__input-group">
-                  <label for="first_name" class="cta-form__label">Name</label>
-                  <input
-                    class="cta-form__text-field w-node-_36e5e479-63bf-e3d0-ec5d-ae19b44bca2f-d0aa87f7 w-input"
-                    maxlength="256"
-                    name="first_name"
-                    data-name="first_name"
-                    placeholder="Your Name"
-                    type="text"
-                    id="first_name"
-                    value="Ivan001"
-                  />
-                </div>
-                <div class="cta-form__input-group">
-                  <label for="email" class="cta-form__label">Email</label>
-                  <input
-                    class="cta-form__text-field w-input"
-                    maxlength="256"
-                    name="email"
-                    data-name="email"
-                    placeholder="Your Email"
-                    type="email"
-                    id="email"
-                    value="ivan.p+t001@coaxsoft.com"
-                  />
-                </div>
-                <input type="hidden" name="properties.segment" value="list1" />
-              </div>
-              <div class="klaviyo_form_actions">
-                <input
-                  type="button"
-                  data-wait="Please wait..."
-                  class="klaviyo_submit_button"
-                  data-action="profile"
-                  value="Create Profile"
-                />
-                <input
-                  type="button"
-                  data-wait="Please wait..."
-                  class="klaviyo_submit_button"
-                  data-action="subscribe"
-                  value="Subscribe"
-                />
-              </div>
-              <div class="klaviyo_messages">
-                <div class="thank_you is--contact-form">Thank you! Your submission has been received!</div>
-              </div>
-            </form>
-            <div class="success_message w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="fail_message w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="page">
+  <div class="content">
+    <div data-kryt-widget="292" class="kryt-widget--wrapper">
+      <script
+        src="https://widget-staging.krytter.com/main.js"
+        type="module"
+        onload="if(window.initializeWidget){window.initializeWidget(292)}else{console.error('Something went wrong');}"
+      ></script>
     </div>
-  </section>
+  </div>
+  <div class="content">
+    <div data-kryt-widget="290" class="kryt-widget--wrapper">
+      <script
+        src="https://widget-staging.krytter.com/main.js"
+        type="module"
+        onload="if(window.initializeWidget){window.initializeWidget(290)}else{console.error('Something went wrong');}"
+      ></script>
+    </div>
+  </div>
 </div>
 
-<script>
-  const COMPANY_ID = "SLr7Px";
-  const LIST_ID = "TUhGzf";
-  const myHeaders = new Headers();
-  myHeaders.append("revision", "2024-10-15");
-  myHeaders.append("Content-Type", "application/vnd.api+json");
-
-  document.querySelectorAll(".klaviyo_submit_button").forEach(function (el) {
-    el.addEventListener("click", function () {
-      const action = el.dataset.action;
-      const form = el.closest("form");
-      const profile = {};
-
-      if (form) {
-        const formData = new FormData(form).entries();
-        for (const [key, value] of formData) {
-          if (key.includes(".")) {
-            const innerKeys = key.split(".");
-
-            if (!profile[innerKeys[0]]) {
-              profile[innerKeys[0]] = {};
-            }
-            profile[innerKeys[0]][innerKeys[1]] = value;
-          } else {
-            profile[key] = value;
-          }
-          console.log(key, value);
-        }
-
-        console.log("profile", profile)
-
-        switch (action) {
-          case "profile":
-            fetch(`https://a.klaviyo.com/client/profiles?company_id=${COMPANY_ID}`, {
-              method: "POST",
-              headers: myHeaders,
-              body: JSON.stringify({
-                "data": {
-                  "type": "profile",
-                  "attributes": profile
-                }
-              })
-            })
-              .then((response) => response.text())
-              .then((result) => console.log(result))
-              .catch((error) => console.error(error));
-            break;
-
-          case "subscribe":
-            fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${COMPANY_ID}`, {
-              method: "POST",
-              headers: myHeaders,
-              body: JSON.stringify({
-                "data": {
-                  "type": "subscription",
-                  "attributes": {
-                    "profile": {
-                      "data": {
-                        "type": "profile",
-                        "attributes": profile,
-                        "subscriptions": {
-                          "email": {
-                            "marketing": {
-                              "consent": "SUBSCRIBED"
-                            }
-                          },
-                        }
-                      }
-                    },
-                  },
-                  "relationships": {
-                    "list": {
-                      "data": {
-                        "type": "list",
-                        "id": LIST_ID
-                      }
-                    }
-                  }
-                }
-              }),
-              redirect: "follow"
-            })
-              .then((response) => response.text())
-              .then((result) => console.log(result))
-              .catch((error) => console.error(error));
-            break;
-
-          default:
-            console.warn("Unknown action: ", action);
-        }
-      }
-    })
-  });
-
-  document.querySelectorAll(".klaviyo-form").forEach((form) => {
-    form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-
-      const formData = new FormData(evt.target);
-
-      const body = {
-        "data": {
-          "type": "subscription",
-          "attributes": {
-            "profile": {
-              "data": {
-                "type": "profile",
-                "attributes": {
-                  "email": formData.get("email"),
-                  "first_name": formData.get("first_name"),
-                  "properties": {
-                    "segment": formData.get("segment")
-                  },
-                  "subscriptions": {
-                    "email": {
-                      "marketing": {
-                        "consent": "SUBSCRIBED"
-                      }
-                    },
-                  }
-                }
-              }
-            },
-            // "custom_source": "<string>"
-          },
-          "relationships": {
-            "list": {
-              "data": {
-                "type": "list",
-                "id": LIST_ID
-              }
-            }
-          }
-        }
-      };
-
-      console.log("body", body);
-
-      fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${COMPANY_ID}`, {
-        method: "POST",
-        headers: myHeaders,
-        body: JSON.stringify(body),
-        redirect: "follow"
-      })
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
-    })
-  })
-</script>
 </body>
 </html>
